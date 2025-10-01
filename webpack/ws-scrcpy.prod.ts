@@ -6,10 +6,29 @@ const prodOpts: webpack.Configuration = {
 };
 
 const front = () => {
-    return Object.assign({}, frontend(), prodOpts);
+    const cfg = frontend();
+    return Object.assign({}, cfg, prodOpts, {
+        resolve: {
+            ...cfg.resolve,
+            fallback: {
+                ...cfg.resolve?.fallback,
+                querystring: require.resolve('querystring-es3')
+            }
+        }
+    });
 };
+
 const back = () => {
-    return Object.assign({}, backend(), prodOpts);
+    const cfg = backend();
+    return Object.assign({}, cfg, prodOpts, {
+        resolve: {
+            ...cfg.resolve,
+            fallback: {
+                ...cfg.resolve?.fallback,
+                querystring: require.resolve('querystring-es3')
+            }
+        }
+    });
 };
 
 module.exports = [front, back];
