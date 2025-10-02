@@ -176,3 +176,14 @@ body.stream {
 .control-wrapper > input[type=checkbox]:checked + label > svg {
     fill: var(--svg-checkbox-bg-color);
 }
+/* 在现有CSS文件（如app.css）中添加以下规则 */
+/* 仅针对视频流页面的控制按钮栏进行隐藏 */
+body.stream .control-buttons-list {
+    display: none !important;
+}
+
+/* 确保设备列表页面的相关元素不受影响 */
+body.list .control-buttons-list,
+#devices .device-list .desc-block.stream {
+    display: block !important;
+}
